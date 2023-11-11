@@ -29,7 +29,7 @@ public class SecurityConfigurations {
                 .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configurationSource(request -> {
                     CorsConfiguration configuration = new CorsConfiguration();
-                    configuration.addAllowedOrigin("http://127.0.0.1:5500");
+                    configuration.addAllowedOrigin("*");
                     configuration.addAllowedMethod("*");
                     configuration.addAllowedHeader("*");
                     return configuration;
@@ -39,6 +39,8 @@ public class SecurityConfigurations {
                         .requestMatchers(HttpMethod.POST,"/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST,"/auth/register").permitAll()
                         .requestMatchers(HttpMethod.POST,"/product").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST,"/cliente").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET,"/product").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);

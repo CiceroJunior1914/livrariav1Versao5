@@ -2,14 +2,12 @@ package com.example.livraria.domain.products;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Table(name = "product")
 @Entity(name = "product")
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
@@ -18,12 +16,28 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
+    private String cod;
+
+    private String titulo;
     private String name;
 
-    private Integer price;
+    private String genero;
+
+    private String autor;
+
+    private Float preco;
+
+
+
+
 
     public Product(ProductRequestDTO data){
-        this.price = data.price();
+        this.cod = data.cod();
+        this.titulo = data.titulo();
         this.name = data.name();
+        this.genero = data.genero();
+        this.autor = data.autor();
+        this.preco = Float.valueOf(data.preco());
+
     }
 }

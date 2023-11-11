@@ -6,10 +6,25 @@ import jakarta.validation.constraints.NotNull;
 import java.math.BigInteger;
 
 public record ProductRequestDTO(
+        String id,
+
+        @NotBlank
+        String cod,
+
+        @NotBlank
+        String titulo,
+
         @NotBlank
         String name,
 
+        @NotBlank
+        String genero,
+
+        @NotBlank
+        String autor,
+
+
         @NotNull
-        Integer price
+        Integer preco
 ) {
 }
