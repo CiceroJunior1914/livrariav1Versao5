@@ -1,6 +1,7 @@
 package com.example.livraria.domain.products;
 
 
+import com.example.livraria.domain.pedido.Pedido;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -8,10 +9,16 @@ import lombok.*;
 @Entity(name = "product")
 @Getter
 @Setter
+
+
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Product {
+
+    @ManyToOne
+    private Pedido pedido;
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
